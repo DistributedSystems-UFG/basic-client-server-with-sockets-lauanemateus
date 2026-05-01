@@ -1,10 +1,61 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/7EVNAYx2)
-# ClientServerBasics (2.0)
-Starter code for the basic client-server assignment
+# Calculadora Remota com Sockets
 
+Um sistema cliente-servidor básico que implementa uma **calculadora remota** utilizando sockets TCP em Python.
 
-Este template corresponde ao exemplo da Fig. 2.3 do livro. O exercício consiste em acrescentar funcionalidade ao servidor para torná-lo mais útil. Essa funcionalidade deve ser acessível aos clientes. Por exemplo, o servidor pode ser uma espécie de calculadora remota. O cliente passa dois valores numéricos, juntamente com o nome de uma operação (ex.: add, subtract, multiply, divide) e o servidor executa a operação respectiva e retorna seu resultado para o cliente. Você pode implementar um servidor com outras funcionalidades (diferente da calculadora). O imporante é que ele ofereça pelo menos três operações diferentes que os clientes podem utilizar remotamente, passando dados para serem processados e recebendo o resultado desse processamento como resposta.
+## Descrição
 
-Tarefa individual.
+Este projeto demonstra a comunicação entre cliente e servidor usando sockets. O servidor executa operações matemáticas simples e envia os resultados para o cliente.
 
-Incluir um Readme descritivo do sistema implementado.
+## Funcionalidades
+
+O servidor suporta as seguintes operações matemáticas:
+
+- **add**: Adição de dois números
+- **subtract**: Subtração de dois números
+- **multiply**: Multiplicação de dois números
+- **divide**: Divisão de dois números (com validação para divisão por zero)
+
+## Estrutura do Projeto
+
+- **server.py** - Servidor que recebe requisições e executa operações matemáticas
+- **client.py** - Cliente que envia requisições e exibe os resultados
+- **constCS.py** - Constantes de configuração (HOST e PORT)
+- **README.md** - Este arquivo
+
+### Execução
+
+1. **Inicie o servidor:**
+   ```bash
+   python server.py
+   ```
+
+2. **Em outro terminal, execute o cliente:**
+   ```bash
+   python client.py
+   ```
+
+## Protocolo de Comunicação
+
+O cliente envia requisições no formato:
+```
+operacao|valor1|valor2
+```
+
+Exemplos:
+- `add|10|5`
+- `subtract|20|8`
+- `multiply|7|6`
+- `divide|100|4`
+
+O servidor responde com um JSON contendo o resultado ou mensagem de erro:
+```json
+{"resultado": 15, "operacao": "add", "valor1": 10, "valor2": 5}
+```
+
+## Configuração
+
+Edite o arquivo `constCS.py` para mudar o ip do seu HOST e PORT escolhida:
+```python
+HOST = '192.168.1.10'
+PORT = 5678
+```
